@@ -624,8 +624,10 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls{
 #ifdef PICKER_AUDIO
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)controller {
     Log(@"FilePicker canceled");
-    _result(nil);
-    _result = nil;
+    if (self.result != nil) {
+        self.result(nil);
+        self.result = nil;
+    }
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 #endif // PICKER_AUDIO
@@ -633,8 +635,10 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls{
 #ifdef PICKER_DOCUMENT
 - (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {
     Log(@"FilePicker canceled");
-    _result(nil);
-    _result = nil;
+    if (self.result != nil) {
+        self.result(nil);
+        self.result = nil;
+    }
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 #endif // PICKER_DOCUMENT
@@ -642,8 +646,10 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls{
 #ifdef PICKER_MEDIA
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     Log(@"FilePicker canceled");
-    _result(nil);
-    _result = nil;
+    if (self.result != nil) {
+        self.result(nil);
+        self.result = nil;
+    }
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 #endif
